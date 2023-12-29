@@ -9,6 +9,7 @@ public static class Extensions
     {
         services.AddPostgres(cfg);
         services.AddRepositories();
+        services.AddDataInitializers();
         
         return services;
     }
@@ -49,8 +50,8 @@ public static class Extensions
             });
         });
 
-        // services.AddHostedService<DatabaseInitializer<K>>();
-        // services.AddHostedService<DataInitializer>();
+        services.AddHostedService<DatabaseInitializer<VericoDbContext>>();
+        services.AddHostedService<DataInitializer>();
 
         return services;
     }
@@ -59,4 +60,13 @@ public static class Extensions
         => services
             .AddScoped<IAccountsRepository, AccountsRepository>()
             .AddScoped<ITransactionsRepository, TransactionsRepository>();
+
+    public static IServiceCollection AddDataInitializers(this IServiceCollection services)
+        => services
+            .AddInitializer<AccountsInitializer>();
+
+    private static IServiceCollection AddInitializer<T>(this IServiceCollection services) where T :
+        class,
+        IDataInitializer
+        => services.AddTransient<IDataInitializer, T>();
 }

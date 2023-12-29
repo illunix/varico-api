@@ -20,4 +20,8 @@
     <ProjectReference Include="..\Verico.Core\Verico.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DAL\Initializers\Accounts\" />
+  </ItemGroup>
+
 </Project>

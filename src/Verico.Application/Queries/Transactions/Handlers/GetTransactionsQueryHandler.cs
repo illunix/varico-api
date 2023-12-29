@@ -7,7 +7,7 @@ public sealed class GetTransactionsQueryHandler(ITransactionsRepository repo)
         CancellationToken ct
     )
         => (await repo.GetAsync(ct)).Select(q => new TransactionDto(
-            $"{q.Account?.FirstName} {q.Account?.LastName}",
+            q.Account?.FullName!,
             q.Amount,
             q.Category,
             q.CreatedAt

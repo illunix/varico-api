@@ -15,3 +15,4 @@ global using Npgsql;
 global using Verico.Infrastructure.DAL;
 global using Verico.Infrastructure.DAL.Repositories;
 global using Verico.Infrastructure.DAL.Initializers.Abstractions;
+global using Verico.Infrastructure.DAL.Initializers;
