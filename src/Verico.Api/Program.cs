@@ -2,17 +2,11 @@ var builder = WebApplication.CreateSlimBuilder(args);
 
 builder.Services
     .AddInfrastructure(builder.Configuration)
-    .AddApp();
-
-builder.Services
-    .AddEndpointsApiExplorer()
-    .AddSwaggerGen();
+    .AddApp()
+    .AddApi();
 
 var app = builder.Build();
 
-app.MapTransactionsEndpoints();
-
-app.UseSwagger();
-app.UseSwaggerUI();
+app.UseApi();
 
 app.Run();
