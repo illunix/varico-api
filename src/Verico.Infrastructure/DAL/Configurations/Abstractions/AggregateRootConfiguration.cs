@@ -12,5 +12,11 @@ public abstract class AggregateRootConfiguration<TBase> : IEntityTypeConfigurati
                 q => q.Value,
                 q => new AggregateId(q)
             );
+        builder
+            .Property(q => q.ReferenceId)
+            .HasConversion(
+                q => q.Value,
+                q => new AggregateReferenceId(q)
+            );
     }
 }

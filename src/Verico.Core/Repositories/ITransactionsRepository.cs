@@ -7,10 +7,12 @@ public interface ITransactionsRepository
         CancellationToken ct = default
     );
     
-    Task<Transaction?> GetAsync(
+    Task<Transaction?> GetByAsync(
         string referenceId,
         CancellationToken ct = default
     );
+
+    Task<IEnumerable<Transaction>> GetAsync(CancellationToken ct = default);
     
     Task UpdateAsync(
         Transaction user,

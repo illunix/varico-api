@@ -6,6 +6,7 @@ public sealed record TransactionCategory(string Value)
     public const string Entertainment = nameof(Entertainment);
     public const string Bills = nameof(Bills);
     public const string Other = nameof(Other);
+    public const string Unknown = nameof(Unknown);
 
     public static implicit operator string(TransactionCategory transactionCategory)
         => transactionCategory.Value;

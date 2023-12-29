@@ -1,6 +1,6 @@
 namespace Verico.Core.Entities.Abstractions;
 
-public sealed record AggregateReferenceId(string Value)
+public sealed record AggregateReferenceId
 {
     public Guid Value { get; }
 

@@ -7,7 +7,7 @@ public sealed class ChangeTransactionCategoryCommandHandler(ITransactionsReposit
         CancellationToken ct
     )
     {
-        var transaction = await repo.GetAsync(
+        var transaction = await repo.GetByAsync(
             cmd.TransactionReferenceId,
             ct
         );

@@ -1,5 +1,3 @@
-using Verico.Infrastructure.DAL.Repositories;
-
 namespace Verico.Infrastructure;
 
 public static class Extensions
@@ -20,20 +18,15 @@ public static class Extensions
         IConfiguration cfg
     )
     {
-        var section = cfg.GetSection("postgres");
-        if (!section.Exists())
-            return services;
+        var section = cfg.GetSection(PostgresOptions.SectionName);
 
-        var options = section.BindOptions<PostgresOptions>();
+        services
+            .AddOptions<PostgresOptions>()
+            .ValidateOnStart();
 
-        if (string.IsNullOrEmpty(options.Server))
-            throw new ArgumentException(nameof(options.Server));
-        if (string.IsNullOrEmpty(options.Database))
-            throw new ArgumentException(nameof(options.Database));
-        if (string.IsNullOrEmpty(options.User))
-            throw new ArgumentException(nameof(options.User));
-        if (string.IsNullOrEmpty(options.Password))
-            throw new ArgumentException(nameof(options.Password));
+        var options = section.Get<PostgresOptions>(); 
+        if (options is null)
+            throw new ArgumentNullException(nameof(options));
 
         var connStr = new NpgsqlConnectionStringBuilder
         {
@@ -43,8 +36,7 @@ public static class Extensions
             Password = options.Password
         }.ToString();
 
-        services.Configure<PostgresOptions>(section);
-        services.AddDbContext<T, K>(q =>
+        services.AddDbContext<VericoDbContext>(q =>
         {
             q.UseNpgsql(connStr);
 
@@ -57,14 +49,14 @@ public static class Extensions
             });
         });
 
-        services.AddHostedService<DatabaseInitializer<K>>();
-        services.AddHostedService<DataInitializer>();
-
-        services.AddScoped(_ => new NpgsqlConnection(connStr));
+        // services.AddHostedService<DatabaseInitializer<K>>();
+        // services.AddHostedService<DataInitializer>();
 
         return services;
     }
     
     public static IServiceCollection AddRepositories(this IServiceCollection services)
-        => services.AddScoped<ITransactionsRepository, TransactionsRepository>();
+        => services
+            .AddScoped<IAccountsRepository, AccountsRepository>()
+            .AddScoped<ITransactionsRepository, TransactionsRepository>();
 }

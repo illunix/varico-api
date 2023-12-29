@@ -12,7 +12,7 @@ internal sealed class TransactionsRepository(VericoDbContext ctx) : ITransaction
         await ctx.SaveChangesAsync(ct);
     }
     
-    public Task<Transaction?> GetAsync(
+    public Task<Transaction?> GetByAsync(
         string referenceId,
         CancellationToken ct = default
     )
@@ -22,6 +22,12 @@ internal sealed class TransactionsRepository(VericoDbContext ctx) : ITransaction
                 q => q.ReferenceId.Equals(referenceId),
                 ct
             );
+
+    public async Task<IEnumerable<Transaction>> GetAsync(CancellationToken ct = default)
+       => await ctx.Transactions
+            .AsNoTracking()
+            .Include(q => q.Account)
+            .ToListAsync();
     
     public async Task UpdateAsync(
         Transaction user,
