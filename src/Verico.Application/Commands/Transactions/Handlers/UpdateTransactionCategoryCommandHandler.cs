@@ -1,9 +1,9 @@
 namespace Verico.Application.Commands.Transactions.Handlers;
 
-public sealed class ChangeTransactionCategoryCommandHandler(ITransactionsRepository repo) 
+public sealed class UpdateTransactionCategoryCommandHandler(ITransactionsRepository repo) 
 {
     public async Task Handle(
-        ChangeTransactionCategoryCommand cmd,
+        UpdateTransactionCategoryCommand cmd,
         CancellationToken ct
     )
     {

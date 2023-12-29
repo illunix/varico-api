@@ -51,8 +51,8 @@ internal static class TransactionsEndpoints
     }
 
     private static async Task<IResult> UpdateTransactionCategory(
-        ChangeTransactionCategoryCommand cmd,
-        ChangeTransactionCategoryCommandHandler handler,
+        UpdateTransactionCategoryCommand cmd,
+        UpdateTransactionCategoryCommandHandler handler,
         CancellationToken ct
     )
     {

@@ -2,8 +2,8 @@ namespace Verico.Core.Entities;
 
 public sealed class Account : AggregateRoot
 {
-    public string FirstName { get; init; }
-    public string LastName { get; init; }
+    public string FirstName { get; init; } = null!;
+    public string LastName { get; init; } = null!;
     public string FullName
         => $"{FirstName} {LastName}";
     public ICollection<Transaction> Transactions = new HashSet<Transaction>();
