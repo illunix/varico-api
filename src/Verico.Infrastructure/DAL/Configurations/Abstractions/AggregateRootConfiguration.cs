@@ -11,7 +11,8 @@ public abstract class AggregateRootConfiguration<TBase> : IEntityTypeConfigurati
             .HasConversion(
                 q => q.Value,
                 q => new AggregateId(q)
-            );
+            )
+            .ValueGeneratedOnAdd();
         builder
             .Property(q => q.ReferenceId)
             .HasConversion(

@@ -3,7 +3,7 @@ namespace Verico.Infrastructure.DAL.Repositories;
 internal sealed class AccountsRepository(VericoDbContext ctx) : IAccountsRepository
 {
     public Task<AggregateId?> GetIdAsync(
-        string referenceId,
+        Guid referenceId,
         CancellationToken ct = default
     )
         => ctx.Accounts

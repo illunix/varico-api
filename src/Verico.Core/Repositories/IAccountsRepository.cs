@@ -3,7 +3,7 @@ namespace Verico.Core.Repositories;
 public interface IAccountsRepository
 {
     Task<AggregateId?> GetIdAsync(
-        string referenceId,
+        Guid referenceId,
         CancellationToken ct = default
     );
 }

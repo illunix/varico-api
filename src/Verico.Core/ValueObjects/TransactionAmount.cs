@@ -6,7 +6,7 @@ public sealed record TransactionAmount
 
     public TransactionAmount(decimal value)
     {
-        if (value < 0)
+        if (value <= 0)
             throw new ArgumentOutOfRangeException(nameof(value));
 
         Value = value;

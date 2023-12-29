@@ -8,7 +8,7 @@ public interface ITransactionsRepository
     );
     
     Task<Transaction?> GetByAsync(
-        string referenceId,
+        Guid referenceId,
         CancellationToken ct = default
     );
 

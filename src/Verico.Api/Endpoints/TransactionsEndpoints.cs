@@ -36,7 +36,7 @@ internal static class TransactionsEndpoints
     }
 
     private static async Task<IResult> CreateTransaction(
-        string accountReferenceId,
+        Guid accountReferenceId,
         CreateTransactionCommand cmd,
         CreateTransactionCommandHandler handler,
         CancellationToken ct

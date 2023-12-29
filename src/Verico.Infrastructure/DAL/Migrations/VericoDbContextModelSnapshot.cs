@@ -25,7 +25,10 @@ namespace Verico.Infrastructure.DAL.Migrations
             modelBuilder.Entity("Verico.Core.Entities.Account", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -46,7 +49,10 @@ namespace Verico.Infrastructure.DAL.Migrations
             modelBuilder.Entity("Verico.Core.Entities.Transaction", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int>("AccountId")
                         .HasColumnType("integer");
@@ -77,12 +83,17 @@ namespace Verico.Infrastructure.DAL.Migrations
             modelBuilder.Entity("Verico.Core.Entities.Transaction", b =>
                 {
                     b.HasOne("Verico.Core.Entities.Account", "Account")
-                        .WithMany()
+                        .WithMany("Transactions")
                         .HasForeignKey("AccountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Account");
+                });
+
+            modelBuilder.Entity("Verico.Core.Entities.Account", b =>
+                {
+                    b.Navigation("Transactions");
                 });
 #pragma warning restore 612, 618
         }

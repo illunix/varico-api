@@ -1,6 +1,6 @@
 namespace Verico.Application.Commands.Transactions;
 
 public sealed record ChangeTransactionCategoryCommand(
-    [property: JsonIgnore] string TransactionReferenceId,
+    [property: JsonIgnore] Guid TransactionReferenceId,
     string Category
 );

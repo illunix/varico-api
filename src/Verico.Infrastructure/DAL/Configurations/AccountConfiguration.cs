@@ -2,7 +2,7 @@ namespace Verico.Infrastructure.DAL.Configurations;
 
 internal sealed class AccountConfiguration : AggregateRootConfiguration<Account>
 {
-    public void Configure(EntityTypeBuilder<Account> builder)
+    public override void Configure(EntityTypeBuilder<Account> builder)
     {
         base.Configure(builder);
         
