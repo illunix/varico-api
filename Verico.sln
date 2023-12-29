@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Verico.Core", "src\Verico.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Verico.Infrastructure", "src\Verico.Infrastructure\Verico.Infrastructure.csproj", "{0262CE52-1196-40E8-A49E-1F53D9B9B188}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Verico.Application", "src\Verico.Application\Verico.Application.csproj", "{84E93C2A-23FD-44B1-962A-5A3B42931CD5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,11 +29,18 @@ Global
 		{0262CE52-1196-40E8-A49E-1F53D9B9B188}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0262CE52-1196-40E8-A49E-1F53D9B9B188}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0262CE52-1196-40E8-A49E-1F53D9B9B188}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84E93C2A-23FD-44B1-962A-5A3B42931CD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84E93C2A-23FD-44B1-962A-5A3B42931CD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84E93C2A-23FD-44B1-962A-5A3B42931CD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84E93C2A-23FD-44B1-962A-5A3B42931CD5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {91A7DAC3-9E00-4FAA-BC5A-8B00830E1A27}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{84E93C2A-23FD-44B1-962A-5A3B42931CD5} = {DE24A5E9-A5E7-4A4C-91CE-73AF65B72E58}
 	EndGlobalSection
 EndGlobal
