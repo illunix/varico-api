@@ -6,16 +6,8 @@ internal static class TransactionsEndpoints
     {
         var group = app.MapGroup("transactions");
 
-        group.MapPost(
-            "/accounts/{accountReferenceId}/transactions",
-            CreateTransaction
-        )
-            .WithName("Create transaction")
-            .Produces(StatusCodes.Status204NoContent)
-            .Produces(StatusCodes.Status400BadRequest);
-
         group.MapPatch(
-            "/{transactionReferenceId}",
+            "/{transactionReferenceId}/category",
             UpdateTransactionCategory
         )
             .WithName("Change transaction category")
@@ -35,21 +27,6 @@ internal static class TransactionsEndpoints
         return group;
     }
 
-    private static async Task<IResult> CreateTransaction(
-        Guid accountReferenceId,
-        CreateTransactionCommand cmd,
-        CreateTransactionCommandHandler handler,
-        CancellationToken ct
-    )
-    {
-        await handler.Handle(
-            cmd with { AccountReferenceId = accountReferenceId },
-            ct
-        );
-
-        return Results.NoContent();
-    }
-
     private static async Task<IResult> UpdateTransactionCategory(
         UpdateTransactionCategoryCommand cmd,
         UpdateTransactionCategoryCommandHandler handler,
@@ -65,13 +42,17 @@ internal static class TransactionsEndpoints
     }
 
     private static async Task<IResult> GetTransactions(
+        Guid? accountReferenceId,
         string? category,
         GetTransactionsQueryHandler handler,
         CancellationToken ct
     )
     {
         var transactions = await handler.Handle(
-            new GetTransactionsQuery(category),
+            new GetTransactionsQuery(
+                accountReferenceId,
+                category
+            ),
             ct
         );
 

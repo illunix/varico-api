@@ -31,6 +31,7 @@ internal static class Extensions
     
     private static WebApplication MapEndpoints(this WebApplication app)
     {
+        app.MapAccountsEndpoints();
         app.MapTransactionsEndpoints();
         
         return app;

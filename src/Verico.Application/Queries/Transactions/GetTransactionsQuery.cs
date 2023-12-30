@@ -1,3 +1,6 @@
 ﻿namespace Verico.Application.Queries.Transactions;
 
-public sealed record GetTransactionsQuery(string? Category);
+public sealed record GetTransactionsQuery(
+    Guid? AccountReferenceId,
+    string? Category
+);
