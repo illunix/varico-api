@@ -36,7 +36,7 @@ internal static class AccountsEndpoints
     )
     {
         await handler.Handle(
-            cmd with { AccountReferenceId = string.Parse(accountReferenceId) },
+            cmd with { AccountReferenceId = accountReferenceId },
             ct
         );
 
@@ -50,7 +50,7 @@ internal static class AccountsEndpoints
     )
     {
         var accSummary = await handler.Handle(
-            new(string.Parse(accountReferenceId)),
+            new(accountReferenceId),
             ct
         );
 

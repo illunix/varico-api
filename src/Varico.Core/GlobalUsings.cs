@@ -5,3 +5,4 @@ global using Varico.Core.Entities;
 global using Varico.Core.Entities.Abstractions;
 global using System.Linq.Expressions;
 global using System.Collections.Immutable;
+global using shortid;

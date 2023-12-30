@@ -9,7 +9,7 @@ public record TransactionReferenceId
         Value = value;
     }
 
-    public static TransactionReferenceId Create() => new(string.NewGuid());
+    public static TransactionReferenceId Create() => new(ShortId.Generate());
 
     public static implicit operator string(TransactionReferenceId date)
         => date.Value;

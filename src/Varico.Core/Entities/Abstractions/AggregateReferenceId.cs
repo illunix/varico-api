@@ -9,7 +9,7 @@ public sealed record AggregateReferenceId
         Value = value;
     }
 
-    public static AggregateReferenceId Create() => new(string.NewGuid());
+    public static AggregateReferenceId Create() => new(ShortId.Generate());
 
     public static implicit operator string(AggregateReferenceId date)
         => date.Value;
