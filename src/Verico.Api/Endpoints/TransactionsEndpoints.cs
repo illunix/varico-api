@@ -65,12 +65,13 @@ internal static class TransactionsEndpoints
     }
 
     private static async Task<IResult> GetTransactions(
+        string? category,
         GetTransactionsQueryHandler handler,
         CancellationToken ct
     )
     {
         var transactions = await handler.Handle(
-            new GetTransactionsQuery(),
+            new GetTransactionsQuery(category),
             ct
         );
 

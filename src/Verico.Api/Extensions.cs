@@ -22,8 +22,6 @@ internal static class Extensions
             app.UseSwaggerUI();
         }
         
-        app.MapTransactionsEndpoints();
-
         app.UseHttpsRedirection();
         
         app.MapEndpoints();

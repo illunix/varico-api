@@ -7,7 +7,10 @@ public sealed record TransactionAmount
     public TransactionAmount(decimal value)
     {
         if (value <= 0)
-            throw new ArgumentOutOfRangeException(nameof(value));
+            throw new ArgumentOutOfRangeException(
+                nameof(value),
+                $"Invalid transaction amount: {value}"
+            );
 
         Value = value;
     }

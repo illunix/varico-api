@@ -1,7 +1,8 @@
 ﻿namespace Verico.Application.DTOs.Transactions;
 
 public sealed record TransactionDto(
-    string CustomerFullName,
+    Guid ReferenceId,
+    AccountDto Account,
     decimal Amount,
     string Category,
     DateTime CreatedAt

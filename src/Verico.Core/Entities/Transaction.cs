@@ -18,6 +18,15 @@ public sealed class Transaction
         TransactionAmount amount
     )
     {
+        if (accId is null)
+            throw new ArgumentNullException(nameof(accId));
+
+        if (category is null)
+            throw new ArgumentNullException(nameof(category));
+
+        if (amount is null) 
+            throw new ArgumentNullException(nameof(amount));
+
         AccountId = accId;
         Category = category;
         Amount = amount;
