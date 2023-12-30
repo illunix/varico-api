@@ -12,7 +12,16 @@ internal static class AccountsEndpoints
         )
             .WithName("Create transaction")
             .Produces(StatusCodes.Status204NoContent)
-            .Produces(StatusCodes.Status400BadRequest);
+            .Produces<ExceptionResponse>(StatusCodes.Status400BadRequest);
+
+        group.MapGet(
+            "/{accountReferenceId}/summary",
+            GetAccountSummary
+        )
+            .WithName("Get account summary")
+            .Produces<AccountSummaryDto>()
+            .Produces<ExceptionResponse>(StatusCodes.Status400BadRequest)
+            .Produces(StatusCodes.Status404NotFound);
 
         group.WithTags("Accounts");
 
@@ -32,5 +41,21 @@ internal static class AccountsEndpoints
         );
 
         return Results.NoContent();
+    }
+
+    private static async Task<IResult> GetAccountSummary(
+        Guid accountReferenceId,
+        GetAccountSummaryQueryHandler handler,
+        CancellationToken ct
+    )
+    {
+        var accSummary = await handler.Handle(
+            new(accountReferenceId),
+            ct
+        );
+
+        return accSummary is null ?
+            Results.NotFound() :
+            Results.Ok(accSummary);
     }
 }

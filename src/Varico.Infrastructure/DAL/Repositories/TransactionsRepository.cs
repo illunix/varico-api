@@ -42,4 +42,14 @@ internal sealed class TransactionsRepository(VaricoDbContext ctx) : ITransaction
 
         await ctx.SaveChangesAsync(ct);
     }
+
+    public async Task RemoveAsync(
+        Transaction user,
+        CancellationToken ct = default
+    )
+    {
+        ctx.Transactions.Remove(user);
+
+        await ctx.SaveChangesAsync(ct);
+    }
 }

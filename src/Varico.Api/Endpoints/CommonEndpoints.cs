@@ -11,8 +11,7 @@ internal static class CommonEndpoints
             GetTransactionCategories
         )
             .WithName("Get transaction categories")
-            .Produces<IEnumerable<string>>()
-            .Produces(StatusCodes.Status400BadRequest);
+            .Produces<IEnumerable<string>>();
 
         group.WithTags("");
 

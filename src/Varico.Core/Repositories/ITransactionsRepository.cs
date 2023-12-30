@@ -21,4 +21,9 @@ public interface ITransactionsRepository
         Transaction user,
         CancellationToken ct = default
     );
+
+    Task RemoveAsync(
+        Transaction transaction,
+        CancellationToken ct = default
+    );
 }

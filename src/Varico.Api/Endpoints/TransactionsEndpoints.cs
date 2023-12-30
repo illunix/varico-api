@@ -12,7 +12,7 @@ internal static class TransactionsEndpoints
         )
             .WithName("Change transaction category")
             .Produces(StatusCodes.Status204NoContent)
-            .Produces(StatusCodes.Status400BadRequest);
+            .Produces<ExceptionResponse>(StatusCodes.Status400BadRequest);
 
         group.MapGet(
             "/",
@@ -20,7 +20,15 @@ internal static class TransactionsEndpoints
         )
             .WithName("Get transactions")
             .Produces<IEnumerable<TransactionDto>>()
-            .Produces(StatusCodes.Status400BadRequest);
+            .Produces<ExceptionResponse>(StatusCodes.Status400BadRequest);
+
+        group.MapDelete(
+           "/{transactionReferenceId}",
+           RemoveTransaction
+        )
+           .WithName("Remove transaction")
+           .Produces(StatusCodes.Status204NoContent)
+           .Produces<ExceptionResponse>(StatusCodes.Status400BadRequest);
 
         group.WithTags("Transactions");
 
@@ -49,7 +57,7 @@ internal static class TransactionsEndpoints
     )
     {
         var transactions = await handler.Handle(
-            new GetTransactionsQuery(
+            new(
                 accountReferenceId,
                 category
             ),
@@ -57,5 +65,19 @@ internal static class TransactionsEndpoints
         );
 
         return Results.Ok(transactions);
+    }
+
+    private static async Task<IResult> RemoveTransaction(
+        Guid accountReferenceId,
+        RemoveTransactionCommandHandler handler,
+        CancellationToken ct
+    )
+    {
+        await handler.Handle(
+            new(accountReferenceId),
+            ct
+        );
+
+        return Results.NoContent();
     }
 }

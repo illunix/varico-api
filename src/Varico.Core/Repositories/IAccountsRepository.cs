@@ -6,4 +6,9 @@ public interface IAccountsRepository
         Guid referenceId,
         CancellationToken ct = default
     );
+
+    Task<Account?> GetByAsync(
+        Guid referenceId,
+        CancellationToken ct = default
+    );
 }
