@@ -50,7 +50,7 @@ internal static class TransactionsEndpoints
     }
 
     private static async Task<IResult> GetTransactions(
-        Guid? accountReferenceId,
+        string? accountReferenceId,
         string? category,
         GetTransactionsQueryHandler handler,
         CancellationToken ct
@@ -68,7 +68,7 @@ internal static class TransactionsEndpoints
     }
 
     private static async Task<IResult> RemoveTransaction(
-        Guid accountReferenceId,
+        string accountReferenceId,
         RemoveTransactionCommandHandler handler,
         CancellationToken ct
     )

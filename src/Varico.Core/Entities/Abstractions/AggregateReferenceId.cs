@@ -2,21 +2,18 @@ namespace Varico.Core.Entities.Abstractions;
 
 public sealed record AggregateReferenceId
 {
-    public Guid Value { get; }
+    public string Value { get; }
 
-    public AggregateReferenceId(Guid value)
+    public AggregateReferenceId(string value)
     {
-        if (value == Guid.Empty)
-            throw new InvalidEntityReferenceIdException(value);
-
         Value = value;
     }
 
-    public static AggregateReferenceId Create() => new(Guid.NewGuid());
+    public static AggregateReferenceId Create() => new(string.NewGuid());
 
-    public static implicit operator Guid(AggregateReferenceId date)
+    public static implicit operator string(AggregateReferenceId date)
         => date.Value;
 
-    public static implicit operator AggregateReferenceId(Guid value)
+    public static implicit operator AggregateReferenceId(string value)
         => new(value);
 }

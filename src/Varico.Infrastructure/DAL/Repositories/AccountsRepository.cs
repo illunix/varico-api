@@ -3,7 +3,7 @@ namespace Varico.Infrastructure.DAL.Repositories;
 internal sealed class AccountsRepository(VaricoDbContext ctx) : IAccountsRepository
 {
     public Task<AggregateId?> GetIdAsync(
-        Guid referenceId,
+        string referenceId,
         CancellationToken ct = default
     )
         => ctx.Accounts
@@ -12,7 +12,7 @@ internal sealed class AccountsRepository(VaricoDbContext ctx) : IAccountsReposit
             .FirstOrDefaultAsync(ct);
 
     public Task<Account?> GetByAsync(
-        Guid referenceId,
+        string referenceId,
         CancellationToken ct = default
     )
         => ctx.Accounts

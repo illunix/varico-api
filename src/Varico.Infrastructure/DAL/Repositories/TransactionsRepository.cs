@@ -13,7 +13,7 @@ internal sealed class TransactionsRepository(VaricoDbContext ctx) : ITransaction
     }
     
     public Task<Transaction?> GetByAsync(
-        Guid referenceId,
+        string referenceId,
         CancellationToken ct = default
     )
         => ctx.Transactions

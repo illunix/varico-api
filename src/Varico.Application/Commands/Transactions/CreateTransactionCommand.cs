@@ -1,7 +1,7 @@
 namespace Varico.Application.Commands.Transactions;
 
 public sealed record CreateTransactionCommand(
-    [property: JsonIgnore] Guid AccountReferenceId,
+    [property: JsonIgnore] string AccountReferenceId,
     string Category,
     decimal Amount
 );

@@ -29,14 +29,14 @@ internal static class AccountsEndpoints
     }
 
     private static async Task<IResult> CreateTransaction(
-        Guid accountReferenceId,
+        string accountReferenceId,
         CreateTransactionCommand cmd,
         CreateTransactionCommandHandler handler,
         CancellationToken ct
     )
     {
         await handler.Handle(
-            cmd with { AccountReferenceId = accountReferenceId },
+            cmd with { AccountReferenceId = string.Parse(accountReferenceId) },
             ct
         );
 
@@ -44,13 +44,13 @@ internal static class AccountsEndpoints
     }
 
     private static async Task<IResult> GetAccountSummary(
-        Guid accountReferenceId,
+        string accountReferenceId,
         GetAccountSummaryQueryHandler handler,
         CancellationToken ct
     )
     {
         var accSummary = await handler.Handle(
-            new(accountReferenceId),
+            new(string.Parse(accountReferenceId)),
             ct
         );
 

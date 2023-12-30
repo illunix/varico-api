@@ -2,21 +2,18 @@ namespace Varico.Core.ValueObjects;
 
 public record TransactionReferenceId
 {
-    public Guid Value { get; }
+    public string Value { get; }
 
-    public TransactionReferenceId(Guid value)
+    public TransactionReferenceId(string value)
     {
-        if (value == Guid.Empty)
-            throw new InvalidEntityReferenceIdException(value);
-
         Value = value;
     }
 
-    public static TransactionReferenceId Create() => new(Guid.NewGuid());
+    public static TransactionReferenceId Create() => new(string.NewGuid());
 
-    public static implicit operator Guid(TransactionReferenceId date)
+    public static implicit operator string(TransactionReferenceId date)
         => date.Value;
 
-    public static implicit operator TransactionReferenceId(Guid value)
+    public static implicit operator TransactionReferenceId(string value)
         => new(value);
 }

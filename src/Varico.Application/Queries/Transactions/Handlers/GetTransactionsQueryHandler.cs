@@ -26,7 +26,7 @@ public sealed class GetTransactionsQueryHandler(ITransactionsRepository repo)
 
         if (
             qry.AccountReferenceId is not null &&
-            qry.AccountReferenceId != Guid.Empty
+            qry.AccountReferenceId != string.Empty
         )
             predicate = predicate.And(q => q.Account!.ReferenceId.Equals(qry.AccountReferenceId));
 
