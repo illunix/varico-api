@@ -63,7 +63,8 @@ public static class Extensions
 
     public static IServiceCollection AddDataInitializers(this IServiceCollection services)
         => services
-            .AddInitializer<AccountsInitializer>();
+            .AddInitializer<AccountsInitializer>()
+            .AddInitializer<TransactionsInitializer>();
 
     private static IServiceCollection AddInitializer<T>(this IServiceCollection services) where T :
         class,
