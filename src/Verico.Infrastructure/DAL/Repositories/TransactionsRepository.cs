@@ -23,11 +23,15 @@ internal sealed class TransactionsRepository(VericoDbContext ctx) : ITransaction
                 ct
             );
 
-    public async Task<IEnumerable<Transaction>> GetAsync(CancellationToken ct = default)
+    public async Task<IEnumerable<Transaction>> GetAsync(
+        Expression<Func<Transaction, bool>> predicate,
+        CancellationToken ct = default
+    )
        => await ctx.Transactions
             .AsNoTracking()
             .Include(q => q.Account)
-            .ToListAsync();
+            .Where(predicate)
+            .ToListAsync(ct);
     
     public async Task UpdateAsync(
         Transaction user,
