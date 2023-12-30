@@ -33,7 +33,8 @@ internal static class Extensions
     {
         app.MapAccountsEndpoints();
         app.MapTransactionsEndpoints();
-        
+        app.MapCommonEndpoints();
+
         return app;
     }
     

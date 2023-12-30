@@ -1,6 +1,4 @@
-﻿using System.Collections.Immutable;
-
-namespace Varico.Core.ValueObjects;
+﻿namespace Varico.Core.ValueObjects;
 
 public sealed record TransactionCategory
 {

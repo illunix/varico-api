@@ -11,6 +11,7 @@ global using Varico.Api.Exceptions.Models;
 global using Varico.Core.Exceptions.Abstractions;
 global using Varico.Api.Exceptions.Middlewares;
 global using Varico.Api.Exceptions.Mapper;
+global using Varico.Application.Queries.Common.Handlers;
 global using Varico.Api;
 global using System.Net;
 global using System.Collections.Concurrent;
