@@ -1,0 +1,17 @@
+﻿global using Varico.Api.Endpoints;
+global using Varico.Application.Commands.Transactions;
+global using Varico.Application.Commands.Transactions.Handlers;
+global using Varico.Application;
+global using Varico.Infrastructure;
+global using Varico.Application.DTOs.Transactions;
+global using Varico.Application.Queries.Transactions;
+global using Varico.Application.Queries.Transactions.Handlers;
+global using Varico.Api.Exceptions.Mapper.Abstractions;
+global using Varico.Api.Exceptions.Models;
+global using Varico.Core.Exceptions.Abstractions;
+global using Varico.Api.Exceptions.Middlewares;
+global using Varico.Api.Exceptions.Mapper;
+global using Varico.Api;
+global using System.Net;
+global using System.Collections.Concurrent;
+global using Humanizer;
