@@ -6,6 +6,7 @@ public sealed class Account : AggregateRoot
     public string LastName { get; init; } = null!;
     public string FullName
         => $"{FirstName} {LastName}";
+    public AccountBalance Balance { get; private set; } = null!;   
     public ICollection<Transaction> Transactions = new HashSet<Transaction>();
 
     private Account() { }
