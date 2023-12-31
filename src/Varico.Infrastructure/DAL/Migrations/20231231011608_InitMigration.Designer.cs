@@ -12,7 +12,7 @@ using Varico.Infrastructure.DAL;
 namespace Varico.Infrastructure.DAL.Migrations
 {
     [DbContext(typeof(VaricoDbContext))]
-    [Migration("20231231010937_InitMigration")]
+    [Migration("20231231011608_InitMigration")]
     partial class InitMigration
     {
         /// <inheritdoc />

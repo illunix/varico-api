@@ -7,15 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="DAL\Initializers\Accounts\**" />
-    <Compile Remove="DAL\Migrations\**" />
-    <EmbeddedResource Remove="DAL\Initializers\Accounts\**" />
-    <EmbeddedResource Remove="DAL\Migrations\**" />
-    <None Remove="DAL\Initializers\Accounts\**" />
-    <None Remove="DAL\Migrations\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
