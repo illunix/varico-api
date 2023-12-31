@@ -9,7 +9,7 @@ public sealed class GetTransactionsQueryHandler(ITransactionsRepository repo) : 
         => (await repo.GetAsync(
                 ConstructFilterExpression(qry),
                 ct
-            )).Select(q => new TransactionDto(
+            ).ConfigureAwait(false)).Select(q => new TransactionDto(
                 q.ReferenceId,
                 new(
                     q.Account?.ReferenceId!,

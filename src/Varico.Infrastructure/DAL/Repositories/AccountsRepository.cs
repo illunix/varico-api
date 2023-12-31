@@ -20,6 +20,12 @@ internal sealed class AccountsRepository(VaricoDbContext ctx) : IAccountsReposit
             .Include(q => q.Transactions)
             .FirstOrDefaultAsync(ct);
 
+    public async Task<IEnumerable<Account>> GetAsync(CancellationToken ct = default)
+       => await ctx.Accounts
+            .AsNoTracking()
+            .ToListAsync(ct)
+            .ConfigureAwait(false);
+
     public async Task UpdateAsync(
         Account acc,
         CancellationToken ct = default
@@ -27,6 +33,8 @@ internal sealed class AccountsRepository(VaricoDbContext ctx) : IAccountsReposit
     {
         ctx.Accounts.Update(acc);
 
-        await ctx.SaveChangesAsync(ct);
+        await ctx
+            .SaveChangesAsync(ct)
+            .ConfigureAwait(false);
     }
 }

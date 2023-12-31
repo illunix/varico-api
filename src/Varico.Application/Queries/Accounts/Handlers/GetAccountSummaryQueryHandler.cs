@@ -7,10 +7,12 @@ public sealed class GetAccountSummaryQueryHandler(IAccountsRepository repo) : IQ
         CancellationToken ct
     )
     {
-        var acc = await repo.GetByAsync(
-            qry.AccountReferenceId,
-            ct
-        );
+        var acc = await repo
+            .GetByAsync(
+                qry.AccountReferenceId,
+                ct
+            )
+            .ConfigureAwait(false);
         if (acc is null)
             return null;
 

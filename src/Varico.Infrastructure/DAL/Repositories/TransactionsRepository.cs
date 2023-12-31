@@ -9,7 +9,9 @@ internal sealed class TransactionsRepository(VaricoDbContext ctx) : ITransaction
     {
         ctx.Transactions.Add(user);
         
-        await ctx.SaveChangesAsync(ct);
+        await ctx
+            .SaveChangesAsync(ct)
+            .ConfigureAwait(false);
     }
     
     public Task<Transaction?> GetByAsync(
@@ -31,7 +33,8 @@ internal sealed class TransactionsRepository(VaricoDbContext ctx) : ITransaction
             .AsNoTracking()
             .Include(q => q.Account)
             .Where(predicate)
-            .ToListAsync(ct);
+            .ToListAsync(ct)
+            .ConfigureAwait(false);
     
     public async Task UpdateAsync(
         Transaction user,
@@ -40,7 +43,9 @@ internal sealed class TransactionsRepository(VaricoDbContext ctx) : ITransaction
     {
         ctx.Transactions.Update(user);
 
-        await ctx.SaveChangesAsync(ct);
+        await ctx
+            .SaveChangesAsync(ct)
+            .ConfigureAwait(false);
     }
 
     public async Task RemoveAsync(
@@ -50,6 +55,8 @@ internal sealed class TransactionsRepository(VaricoDbContext ctx) : ITransaction
     {
         ctx.Transactions.Remove(user);
 
-        await ctx.SaveChangesAsync(ct);
+        await ctx
+            .SaveChangesAsync(ct)
+            .ConfigureAwait(false);
     }
 }

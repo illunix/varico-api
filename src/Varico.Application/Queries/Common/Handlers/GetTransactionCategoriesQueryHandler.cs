@@ -11,5 +11,5 @@ public sealed class GetTransactionCategoriesQueryHandler : IQueryHandler<GetTran
                 TransactionCategory.Entertainment,
                 TransactionCategory.Food,
                 TransactionCategory.Other
-        });
+        }).ConfigureAwait(false);
 }

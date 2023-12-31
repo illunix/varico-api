@@ -2,7 +2,7 @@
 
 public sealed record TransactionDto(
     string ReferenceId,
-    AccountDto Account,
+    TransactionAccountDto Account,
     decimal Amount,
     string Category,
     DateTime CreatedAt

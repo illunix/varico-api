@@ -9,7 +9,9 @@ internal sealed class SubtractAccountBalanceCommandHandler(IAccountsRepository r
     {
         cmd.Account.Balance.Subtract(cmd.Amount);
 
-        await repo.UpdateAsync(cmd.Account);
+        await repo
+            .UpdateAsync(cmd.Account)
+            .ConfigureAwait(false);
         
         return Unit.Value;
     }

@@ -17,7 +17,9 @@ internal sealed class RemoveTransactionCommandHandler(ITransactionsRepository re
                 cmd.TransactionReferenceId
             );
 
-        await repo.RemoveAsync(transaction);
+        await repo
+            .RemoveAsync(transaction)
+            .ConfigureAwait(false);
 
         return Unit.Value;
     }

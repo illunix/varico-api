@@ -6,6 +6,14 @@ internal static class AccountsEndpoints
     {
         var group = app.MapGroup("accounts");
 
+        group.MapGet(
+            "/",
+            GetAccounts
+        )
+            .WithName("Get accounts")
+            .Produces<IEnumerable<AccountDto>>()
+            .Produces<ExceptionResponse>(StatusCodes.Status400BadRequest);
+
         group.MapPost(
             "/{accountReferenceId}/transactions",
             CreateTransaction
@@ -27,6 +35,15 @@ internal static class AccountsEndpoints
 
         return group;
     }
+
+    private static async Task<IResult> GetAccounts(
+        IMediator mediator,
+        CancellationToken ct
+    )
+        => Results.Ok(await mediator.Send(
+            new GetAccountsQuery(),
+            ct
+        ));
 
     private static async Task<IResult> CreateTransaction(
         string accountReferenceId,

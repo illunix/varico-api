@@ -21,22 +21,26 @@ internal sealed class CreateTransactionCommandHandler(
                 cmd.AccountReferenceId
             );
 
-        await transactionsRepo.AddAsync(
-            new(
-                acc.Id,
-                cmd.Category,
-                cmd.Amount
-            ),
-            ct
-        );
+        await transactionsRepo
+            .AddAsync(
+                new(
+                    acc.Id,
+                    cmd.Category,
+                    cmd.Amount
+                ),
+                ct
+            )
+            .ConfigureAwait(false);
 
-        await mediator.Publish(
-            new CreatedTransactionEvent(
-                acc,
-                cmd.Amount
-            ),
-            ct
-        );
+        await mediator
+            .Publish(
+                new CreatedTransactionEvent(
+                    acc,
+                    cmd.Amount
+                ),
+                ct
+            )
+            .ConfigureAwait(false);
 
         return Unit.Value;
     }

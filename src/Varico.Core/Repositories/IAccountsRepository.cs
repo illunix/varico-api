@@ -12,6 +12,8 @@ public interface IAccountsRepository
         CancellationToken ct = default
     );
 
+    Task<IEnumerable<Account>> GetAsync(CancellationToken ct = default);
+
     Task UpdateAsync(
         Account acc,
         CancellationToken ct = default

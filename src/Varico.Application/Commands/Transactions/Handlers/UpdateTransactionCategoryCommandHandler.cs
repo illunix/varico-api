@@ -19,10 +19,12 @@ internal sealed class UpdateTransactionCategoryCommandHandler(ITransactionsRepos
         
         transaction.ChangeCategory(cmd.Category);
         
-        await repo.UpdateAsync(
-            transaction,
-            ct
-        );
+        await repo
+            .UpdateAsync(
+                transaction,
+                ct
+            )
+            .ConfigureAwait(false);
 
         return Unit.Value;
     }
