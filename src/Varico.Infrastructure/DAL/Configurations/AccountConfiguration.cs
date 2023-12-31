@@ -7,14 +7,20 @@ internal sealed class AccountConfiguration : AggregateRootConfiguration<Account>
         base.Configure(builder);
         
         builder
-            .HasMany(q => q.Transactions)
-            .WithOne(q => q.Account)
-            .HasForeignKey(q => q.AccountId);
+            .Property(q => q.Balance)
+            .HasConversion(
+                q => q.ToString(),
+                q => new AccountFullName.FromFullName(q)
+            );
         builder
             .Property(q => q.Balance)
             .HasConversion(
                 q => q.Value,
                 q => new AccountBalance(q)
             );
+        builder
+            .HasMany(q => q.Transactions)
+            .WithOne(q => q.Account)
+            .HasForeignKey(q => q.AccountId);
     }
 }

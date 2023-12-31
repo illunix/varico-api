@@ -16,21 +16,24 @@ public sealed record AccountFullName
         LastName = lastName;
     }
 
-    public static implicit operator string(AccountFullName accFullName)
-        => accFullName.Value;
+    public override string ToString()
+        => $"{FirstName} {LastName}";
 
-    public static implicit operator AccountFullName(string fullName)
+    public static AccountFullName FromFullName(string fullName)
     {
         var parts = fullName.Split(' ');
         if (parts.Length != 2)
-            throw new ArgumentException(
-                "Full name must include first and last name.", 
+            => throw new ArgumentException(
+                "Full name must include at first and last name.", 
                 nameof(fullName)
             );
 
         return new AccountFullName(
             parts[0], 
-            parts[1]
+            string.Join(
+                " ", 
+                parts.Skip(1)
+            )
         );
     }
 }
