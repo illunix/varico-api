@@ -11,4 +11,9 @@ public interface IAccountsRepository
         string referenceId,
         CancellationToken ct = default
     );
+
+    Task UpdateAsync(
+        Account acc,
+        CancellationToken ct = default
+    );
 }

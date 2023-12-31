@@ -1,8 +1,8 @@
 ﻿namespace Varico.Application.Commands.Transactions.Handlers;
 
-public sealed class RemoveTransactionCommandHandler(ITransactionsRepository repo)
+internal sealed class RemoveTransactionCommandHandler(ITransactionsRepository repo) : ICommandHandler<RemoveTransactionCommand>
 {
-    public async Task Handle(
+    public async ValueTask<Unit> Handle(
         RemoveTransactionCommand cmd,
         CancellationToken ct
     )
@@ -18,5 +18,7 @@ public sealed class RemoveTransactionCommandHandler(ITransactionsRepository repo
             );
 
         await repo.RemoveAsync(transaction);
+
+        return Unit.Value;
     }
 }

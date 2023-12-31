@@ -1,8 +1,8 @@
 namespace Varico.Application.Commands.Transactions.Handlers;
 
-public sealed class UpdateTransactionCategoryCommandHandler(ITransactionsRepository repo) 
+internal sealed class UpdateTransactionCategoryCommandHandler(ITransactionsRepository repo) : ICommandHandler<UpdateTransactionCategoryCommand>
 {
-    public async Task Handle(
+    public async ValueTask<Unit> Handle(
         UpdateTransactionCategoryCommand cmd,
         CancellationToken ct
     )
@@ -23,5 +23,7 @@ public sealed class UpdateTransactionCategoryCommandHandler(ITransactionsReposit
             transaction,
             ct
         );
+
+        return Unit.Value;
     }
 }

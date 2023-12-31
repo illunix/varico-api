@@ -1,32 +1,43 @@
 namespace Varico.Application.Commands.Transactions.Handlers;
 
-public sealed class CreateTransactionCommandHandler(
+internal sealed class CreateTransactionCommandHandler(
     IAccountsRepository accountsRepo,
-    ITransactionsRepository transactionsRepo
-) 
+    ITransactionsRepository transactionsRepo,
+    IMediator mediator
+) : ICommandHandler<CreateTransactionCommand> 
 {
-    public async Task Handle(
+    public async ValueTask<Unit> Handle(
         CreateTransactionCommand cmd,
         CancellationToken ct
     )
     {
-        var accId = await accountsRepo.GetIdAsync(
+        var acc = await accountsRepo.GetByAsync(
             cmd.AccountReferenceId,
             ct
         );
-        if (accId is null)
+        if (acc is null)
             throw new EntityNotFoundException(
                 nameof(Account),
                 cmd.AccountReferenceId
             );
-        
+
         await transactionsRepo.AddAsync(
             new(
-                accId,
+                acc.Id,
                 cmd.Category,
                 cmd.Amount
             ),
             ct
         );
+
+        await mediator.Publish(
+            new CreatedTransactionEvent(
+                acc,
+                cmd.Amount
+            ),
+            ct
+        );
+
+        return Unit.Value;
     }
 }

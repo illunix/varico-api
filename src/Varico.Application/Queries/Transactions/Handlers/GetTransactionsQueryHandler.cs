@@ -1,8 +1,8 @@
 ﻿namespace Varico.Application.Queries.Transactions.Handlers;
 
-public sealed class GetTransactionsQueryHandler(ITransactionsRepository repo)
+public sealed class GetTransactionsQueryHandler(ITransactionsRepository repo) : IQueryHandler<GetTransactionsQuery, IEnumerable<TransactionDto>>
 {
-    public async Task<IEnumerable<TransactionDto>> Handle(
+    public async ValueTask<IEnumerable<TransactionDto>> Handle(
         GetTransactionsQuery qry,
         CancellationToken ct
     )

@@ -31,11 +31,11 @@ internal static class AccountsEndpoints
     private static async Task<IResult> CreateTransaction(
         string accountReferenceId,
         CreateTransactionCommand cmd,
-        CreateTransactionCommandHandler handler,
+        IMediator mediator,
         CancellationToken ct
     )
     {
-        await handler.Handle(
+        await mediator.Send(
             cmd with { AccountReferenceId = accountReferenceId },
             ct
         );
@@ -45,12 +45,12 @@ internal static class AccountsEndpoints
 
     private static async Task<IResult> GetAccountSummary(
         string accountReferenceId,
-        GetAccountSummaryQueryHandler handler,
+        IMediator mediator,
         CancellationToken ct
     )
     {
-        var accSummary = await handler.Handle(
-            new(accountReferenceId),
+        var accSummary = await mediator.Send(
+            new GetAccountSummaryQuery(accountReferenceId),
             ct
         );
 

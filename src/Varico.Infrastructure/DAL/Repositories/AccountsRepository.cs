@@ -19,4 +19,14 @@ internal sealed class AccountsRepository(VaricoDbContext ctx) : IAccountsReposit
             .Where(q => q.ReferenceId.Equals(referenceId))
             .Include(q => q.Transactions)
             .FirstOrDefaultAsync(ct);
+
+    public async Task UpdateAsync(
+        Account acc,
+        CancellationToken ct = default
+    )
+    {
+        ctx.Accounts.Update(acc);
+
+        await ctx.SaveChangesAsync(ct);
+    }
 }

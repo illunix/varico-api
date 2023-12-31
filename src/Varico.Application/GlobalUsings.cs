@@ -6,5 +6,8 @@ global using Varico.Core.Predicate;
 global using Varico.Core.ValueObjects;
 global using Varico.Application.DTOs.Transactions;
 global using Varico.Application.DTOs.Accounts;
+global using Varico.Application.Events;
+global using Varico.Application.Commands.Accounts;
 global using Microsoft.Extensions.DependencyInjection;
 global using System.Linq.Expressions;
+global using Mediator;

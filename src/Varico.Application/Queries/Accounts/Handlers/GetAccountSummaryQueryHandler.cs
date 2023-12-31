@@ -1,8 +1,8 @@
 ﻿namespace Varico.Application.Queries.Accounts.Handlers;
 
-public sealed class GetAccountSummaryQueryHandler(IAccountsRepository repo)
+public sealed class GetAccountSummaryQueryHandler(IAccountsRepository repo) : IQueryHandler<GetAccountSummaryQuery, AccountSummaryDto>
 {
-    public async Task<AccountSummaryDto?> Handle(
+    public async ValueTask<AccountSummaryDto?> Handle(
         GetAccountSummaryQuery qry,
         CancellationToken ct
     )

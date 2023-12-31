@@ -8,6 +8,12 @@ public sealed class Account : AggregateRoot
 
     private Account() { }
 
-    public Account(AccountFullName fullName)
-        => FullName = fullName;
+    public Account(
+        AccountFullName fullName,
+        AccountBalance balance
+    )
+    {
+        FullName = fullName;
+        Balance = balance;
+    }
 }

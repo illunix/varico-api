@@ -18,6 +18,12 @@ internal static class CommonEndpoints
         return group;
     }
 
-    private static IResult GetTransactionCategories(GetTransactionCategoriesQueryHandler handler)
-        => Results.Ok(handler.Handle());
+    private static async Task<IResult> GetTransactionCategories(
+        IMediator mediator,
+        CancellationToken ct
+    )
+        => Results.Ok(await mediator.Send(
+            new GetTransactionCategoriesQuery(),
+            ct
+        ));
 }

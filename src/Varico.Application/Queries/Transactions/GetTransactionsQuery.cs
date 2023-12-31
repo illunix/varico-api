@@ -3,4 +3,4 @@
 public sealed record GetTransactionsQuery(
     string? AccountReferenceId,
     string? Category
-);
+) : IQuery<IEnumerable<TransactionDto>>;
