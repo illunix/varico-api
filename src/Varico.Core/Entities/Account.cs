@@ -16,4 +16,7 @@ public sealed class Account : AggregateRoot
         FullName = fullName;
         Balance = balance;
     }
+
+    public void SubtractFromBalance(TransactionAmount amount)
+        => Balance = Balance.Subtract(amount);
 }

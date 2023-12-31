@@ -7,7 +7,7 @@ internal sealed class SubtractAccountBalanceCommandHandler(IAccountsRepository r
         CancellationToken ct
     )
     {
-        cmd.Account.Balance.Subtract(cmd.Amount);
+        cmd.Account.SubtractFromBalance(cmd.Amount);
 
         await repo
             .UpdateAsync(cmd.Account)
