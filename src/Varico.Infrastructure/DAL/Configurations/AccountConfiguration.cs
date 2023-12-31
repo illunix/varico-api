@@ -7,10 +7,10 @@ internal sealed class AccountConfiguration : AggregateRootConfiguration<Account>
         base.Configure(builder);
         
         builder
-            .Property(q => q.Balance)
+            .Property(q => q.FullName)
             .HasConversion(
                 q => q.ToString(),
-                q => new AccountFullName.FromFullName(q)
+                q => AccountFullName.FromFullName(q)
             );
         builder
             .Property(q => q.Balance)

@@ -23,7 +23,7 @@ public sealed record AccountFullName
     {
         var parts = fullName.Split(' ');
         if (parts.Length != 2)
-            => throw new ArgumentException(
+            throw new ArgumentException(
                 "Full name must include at first and last name.", 
                 nameof(fullName)
             );

@@ -19,22 +19,22 @@ internal sealed class AccountsInitializer(
     private async Task AddAccounts()
     {
         await ctx.Accounts.AddRangeAsync(
-            new Account(
+            new Account(new(
                 "Jan",
                 "Kowalski"
-            ),
-            new Account(
+            )),
+            new Account(new(
                 "Amir",
                 "Czarnecki"
-            ),
-            new Account(
+            )),
+            new Account(new(
                 "Izabela",
                 "Błaszczyk"
-            ),
-            new Account(
+            )),
+            new Account(new(
                 "Franciszek",
                 "Jankowski"
-            )
+            ))
         ).ConfigureAwait(false);
 
         logger.LogInformation("Initialized accounts.");

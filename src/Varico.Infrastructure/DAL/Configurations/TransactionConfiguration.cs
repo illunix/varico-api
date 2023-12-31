@@ -8,7 +8,7 @@ internal sealed class TransactionConfiguration : IEntityTypeConfiguration<Transa
         builder
             .Property(q => q.Id)
             .HasConversion(
-                q => q.Value,
+                q => q!.Value,
                 q => new TransactionId(q)
             )
             .ValueGeneratedOnAdd();

@@ -15,7 +15,7 @@ public sealed class GetAccountSummaryQueryHandler(IAccountsRepository repo)
             return null;
 
         return new(
-            acc.FullName,
+            acc.FullName.Value,
             acc.Transactions.Sum(q => q.Amount),
             acc.Transactions.Select(q => new AccountTransactionDto(
                 q.ReferenceId,

@@ -13,7 +13,7 @@ public sealed class GetTransactionsQueryHandler(ITransactionsRepository repo)
                 q.ReferenceId,
                 new(
                     q.Account?.ReferenceId!,
-                    q.Account?.FullName!
+                    q.Account?.FullName.Value!
                 ),
                 q.Amount,
                 q.Category,
