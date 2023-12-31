@@ -19,6 +19,18 @@ public sealed record AccountFullName
     public static implicit operator string(AccountFullName accFullName)
         => accFullName.Value;
 
-    public static implicit operator AccountFullName(decimal accFullName)
-        => new(accFullName);
+    public static implicit operator AccountFullName(string fullName)
+    {
+        var parts = fullName.Split(' ');
+        if (parts.Length != 2)
+            throw new ArgumentException(
+                "Full name must include first and last name.", 
+                nameof(fullName)
+            );
+
+        return new AccountFullName(
+            parts[0], 
+            parts[1]
+        );
+    }
 }
