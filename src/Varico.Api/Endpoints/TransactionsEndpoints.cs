@@ -36,13 +36,14 @@ internal static class TransactionsEndpoints
     }
 
     private static async Task<IResult> UpdateTransactionCategory(
+        string transactionReferenceId,
         UpdateTransactionCategoryCommand cmd,
         IMediator mediator,
         CancellationToken ct
     )
     {
         await mediator.Send(
-            cmd,
+            cmd with { TransactionReferenceId = transactionReferenceId },
             ct
         );
 
@@ -68,13 +69,13 @@ internal static class TransactionsEndpoints
     }
 
     private static async Task<IResult> RemoveTransaction(
-        string accountReferenceId,
+        string transactionReferenceId,
         IMediator mediator,
         CancellationToken ct
     )
     {
         await mediator.Send(
-            new RemoveTransactionCommand(accountReferenceId),
+            new RemoveTransactionCommand(transactionReferenceId),
             ct
         );
 
